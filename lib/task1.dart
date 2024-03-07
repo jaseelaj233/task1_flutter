@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:task1/datas.dart';
+import 'package:task1/widgets/posttile.dart';
 
 class Task extends StatelessWidget {
   const Task({super.key});
 
   @override
   Widget build(BuildContext context) {
+    Datas data = Datas();
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 226, 186, 199),
-      body: SingleChildScrollView(
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
             Container(
@@ -17,9 +21,9 @@ class Task extends StatelessWidget {
                 children: [Icon(Icons.menu), Spacer(), Icon(Icons.send)],
               ),
             ),
-            const Row(
+            Row(
               children: [
-                Column(
+                const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text('hello'),
@@ -29,150 +33,77 @@ class Task extends StatelessWidget {
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 40),
                     ),
                   ],
-                )
+                ),
+                const Spacer(),
+                OutlinedButton.icon(
+                  onPressed: () {},
+                  label: const Text('add content'),
+                  icon: const Icon(Icons.add),
+                ),
               ],
             ),
-            const Row(
-              children: [
-                CircleAvatar(
-                  backgroundImage: AssetImage("assets/trivior.jpg"),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(8.0, 10.0, 8.0, 4.0),
+              child: Container(
+                height: 200,
+                child: Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: ListView.separated(
+                    separatorBuilder: (context, index) =>
+                        const SizedBox(width: 5),
+                    scrollDirection: Axis.horizontal,
+                    itemCount: data.items.length,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        height: 150,
+                        width: 150,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30),
+                          image: DecorationImage(
+                              image: AssetImage(data.items[index]['postimg']),
+                              fit: BoxFit.cover),
+                        ),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            CircleAvatar(
+                              backgroundImage:
+                                  AssetImage(data.items[index]['profileimg']),
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              data.items[index]['username'],
+                              style: const TextStyle(color: Colors.white),
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              data.items[index]['time'],
+                              style: const TextStyle(color: Colors.white),
+                            )
+                          ],
+                        ),
+                      );
+                    },
+                  ),
                 ),
-                SizedBox(width: 10),
-                Text(
-                  'trevor',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                SizedBox(width: 10),
-                Text('15m'),
-                Spacer(),
-                Icon(Icons.more_vert),
-              ],
-            ),
-            Container(
-              height: 200,
-              width: 500,
-              child: Image.asset("assets/download (2).jpg", fit: BoxFit.cover),
-            ),
-            const Row(
-              children: [
-                Icon(Icons.heart_broken_rounded),
-                Icon(Icons.comment),
-                Icon(Icons.share_rounded),
-                Spacer(),
-                Icon(Icons.save)
-              ],
-            ),
-            const Row(
-              children: [
-                CircleAvatar(
-                  backgroundImage: AssetImage('assets/aspen.jpg'),
-                ),
-                SizedBox(width: 10),
-                Text(
-                  'aspen',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                SizedBox(width: 10),
-                Text('10m'),
-                Spacer(),
-                Icon(Icons.more_vert),
-              ],
-            ),
-            Container(
-              height: 200,
-              width: 500,
-              child: Image.asset(
-                "assets/pexels-photo-674010.jpeg",
-                fit: BoxFit.cover,
               ),
             ),
-            const Row(
-              children: [
-                Icon(Icons.heart_broken_rounded),
-                Icon(Icons.comment),
-                Icon(Icons.share_rounded),
-                Spacer(),
-                Icon(Icons.save)
-              ],
-            ),
-            const Row(
-              children: [
-                CircleAvatar(
-                  backgroundImage: AssetImage('assets/merry.jpg'),
-                ),
-                SizedBox(width: 10),
-                Text(
-                  'merry',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                SizedBox(width: 10),
-                Text('15m'),
-                Spacer(),
-                Icon(Icons.more_vert),
-              ],
-            ),
-            Container(
-              height: 200,
-              width: 500,
-              child: Image.asset(
-                "assets/pexels-photo-674010.jpeg",
-                fit: BoxFit.cover,
-              ),
-            ),
-            const Row(
-              children: [
-                Icon(Icons.heart_broken_rounded),
-                Icon(Icons.comment),
-                Icon(Icons.share_rounded),
-                Spacer(),
-                Icon(Icons.save)
-              ],
-            ),
-            const Row(
-              children: [
-                CircleAvatar(
-                  backgroundImage: AssetImage(
-                      'assets/240_F_338903738_RT7vLyCCZeWWvKD42waga3xej2CGFnXW.jpg'),
-                ),
-                SizedBox(width: 10),
-                Text(
-                  'Tharesa',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                SizedBox(width: 10),
-                Text('10m'),
-                Spacer(),
-                Icon(Icons.more_vert),
-              ],
-            ),
-            Container(
-              height: 200,
-              width: 500,
-              child: Image.asset(
-                "assets/pexels-photo-674010.jpeg",
-                fit: BoxFit.cover,
-              ),
-            ),
-            const Row(
-              children: [
-                Icon(Icons.heart_broken_rounded),
-                Icon(Icons.comment),
-                Icon(Icons.share_rounded),
-                Spacer(),
-                Icon(Icons.save)
-              ],
-            ),
-
-            // ListView(
-            //   scrollDirection: Axis.horizontal,
-            //   children: [
-            //     Container(
-            //       height: 100,
-            //       width: 100,
-            //       decoration: BoxDecoration(color: Colors.amber),
-            //     )
-            //   ],
-            // )
+            Expanded(
+                child: ListView.builder(
+              itemCount: 4,
+              itemBuilder: (context, index) {
+                return PostTile(
+                  profileimg: data.items[index]['profileimg'],
+                  username: data.items[index]['username'],
+                  time: data.items[index]['time'],
+                  postimage: data.items[index]['postimg'],
+                );
+              },
+            ))
           ],
         ),
       ),
