@@ -45,7 +45,7 @@ class PostTile extends StatelessWidget {
         ),
         const Row(
           children: [
-            Icon(Icons.heart_broken_rounded),
+            Icon(Icons.favorite_outline),
             Icon(Icons.comment),
             Icon(Icons.share_rounded),
             Spacer(),
